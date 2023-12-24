@@ -5,9 +5,9 @@
 <% end %>
 
 <h2>Name:<%=@expense.name%></h2>
-<p>category:<%=@expense.category%></p>
+<p>Category_Id:<%=@expense.category_id%></p>
 <p>Amount:<%=@expense.amount%></p>
-<p>Date:<%=@expense.start_time%></p>
+<p>Date%Time:<%=@expense.start_time%></p>
 
 <%= link_to "Edit", edit_expense_path(@expense), :class => 'btn btn-primary' %>
 <%= link_to "Delete", expense_path(@expense), method: :delete, data: {confirm:'Are you sure?'}, :class => 'btn btn-danger' %>

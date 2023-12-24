@@ -1,0 +1,13 @@
+<% if !flash[:notice].blank? %>
+<div class="alert alert-primary" role="alert">
+<%= flash[:notice] %>
+</div>
+<% end %>
+
+<h2>Name:<%=@category.name%></h2>
+
+
+<%= link_to "Edit", edit_category_path(@category), :class => 'btn btn-primary' %>
+<%= link_to "Delete", category_path(@category), method: :delete, data: {confirm:'Are you sure?'}, :class => 'btn btn-danger' %>
+
+<%= link_to "Back To Index", categories_path , :class => 'btn btn-primary'%>
