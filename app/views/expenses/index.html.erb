@@ -1,0 +1,20 @@
+<%= link_to "Add New Expense",  new_expense_path, :class => 'btn btn-primary'  %>
+<br>
+
+<% if !flash[:notice].blank? %>
+<div class="alert alert-secondary" role="alert">
+<%= flash[:notice] %>
+</div>
+<% end %>
+
+<h1>All Expense</h1>
+<% @expense.each do |expense|%>
+   
+<h>Name:<%=expense.name%></h2>
+<p>Category:<%=expense.category%></p>
+<p>Amount:<%=expense.amount%></p>
+<p>Date&Time:<%=expense.start_time%></p>
+<%=link_to "Read more", expense_path(expense), :class => 'btn btn-primary'%>
+<br><br>
+
+<% end %>

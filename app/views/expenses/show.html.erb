@@ -1,0 +1,15 @@
+<% if !flash[:notice].blank? %>
+<div class="alert alert-primary" role="alert">
+<%= flash[:notice] %>
+</div>
+<% end %>
+
+<h2>Name:<%=@expense.name%></h2>
+<p>category:<%=@expense.category%></p>
+<p>Amount:<%=@expense.amount%></p>
+<p>Date:<%=@expense.start_time%></p>
+
+<%= link_to "Edit", edit_expense_path(@expense), :class => 'btn btn-primary' %>
+<%= link_to "Delete", expense_path(@expense), method: :delete, data: {confirm:'Are you sure?'}, :class => 'btn btn-danger' %>
+
+<%= link_to "Back To Index", expenses_path , :class => 'btn btn-primary'%>
