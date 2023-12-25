@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
-  before_action :authenticate_user!
- 
+  # before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
     def index
         @expense = Expense.all
     end
@@ -52,6 +52,6 @@ class ExpensesController < ApplicationController
 
     private def post_params
         params.require(:expense).permit(:name , :category_id, :amount, :date_time, :start_time)
-          end
+      end
 
 end
