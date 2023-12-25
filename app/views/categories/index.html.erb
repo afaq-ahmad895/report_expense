@@ -10,7 +10,7 @@
 <h1>All Categories</h1>
 <% @category.each do |category|%>
    
-<h>Name:<%=category.name%></h2>
+<h3>Name:<%=category.name%></h3>
 
 <%=link_to "Read more", category_path(category), :class => 'btn btn-primary'%>
 <br><br>

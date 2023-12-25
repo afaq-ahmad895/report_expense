@@ -49,7 +49,7 @@ class ExpensesController < ApplicationController
 
 
     private def post_params
-        params.require(:expense).permit(:name , :category, :amount, :date_time, :start_time)
+        params.require(:expense).permit(:name , :category_id, :amount, :date_time, :start_time)
           end
 
 end
