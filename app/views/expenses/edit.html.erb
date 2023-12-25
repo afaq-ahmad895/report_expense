@@ -13,7 +13,7 @@
 <br><br>
 
   <%= f.label :Category_Id %>
-  <%= f.text_field :category_id %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, prompt: true %>
 <br><br>
 
   <%= f.label :Amount %>
