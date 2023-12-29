@@ -12,7 +12,7 @@
   <%= f.text_field :name %>
 <br><br>
 
-  <%= f.label :Category_Id %>
+  <%= f.label :Category %>
   <%= f.collection_select :category_id, Category.all, :id, :name, prompt: true %>
 <br><br>
 
