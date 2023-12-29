@@ -8,12 +8,12 @@
 <% end %>
 
 <h1>All Expense</h1>
-<% @expense.each do |expense|%>
+<% @expenses.each do |expense|%>
    
 <h2>Name:<%=expense.name%></h2>
-<p>Category.Name:<%= expense.category.name %></p>
+<p>Category:<%= expense.category.name %></p>
 <p>Amount:<%=expense.amount%></p>
-<p>Date&Time:<%=expense.start_time%></p>
+<p>Time:<%=expense.start_time%></p>
 <%=link_to "Read more", expense_path(expense), :class => 'btn btn-primary'%>
 <br><br>
 
