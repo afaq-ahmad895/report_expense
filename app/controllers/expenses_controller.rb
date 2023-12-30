@@ -2,16 +2,16 @@ class ExpensesController < ApplicationController
   require 'pry'
    before_action :authenticate_user!
   # before_action :authenticate_user!, only: [:create, :update, :destroy]
-  #before_action :set_expense, only: [:show, :edit, :update, :destroy]
+  before_action :set_expense, only: [:show, :edit, :update, :destroy]
   def index
-    @expenses = Expense.all
-
+    # @expenses = Expense.all
+    @expenses = current_user.expenses
     respond_to do |format|
       format.html
       format.xlsx {
         response.headers['Content-Disposition'] = 'attachment; filename="expenses.xlsx"'
       }
-      
+
     end
 
 end
@@ -32,7 +32,7 @@ end
 
 
     def create
-          @expense = Expense.new(expense_params)
+          # @expense = Expense.new(expense_params)
          @expense = current_user.expenses.new(expense_params)
         if(@expense.save)
           flash[:notice]="Expense created successfully" 
@@ -43,17 +43,17 @@ end
         end
 
     def show
-           @expense = Expense.find(params[:id])
+           # @expense = Expense.find(params[:id])
 
     end
 
     def edit
-           @expense = Expense.find(params[:id])
+           # @expense = Expense.find(params[:id])
 
    end
 
    def update
-       @expense=Expense.find(params[:id])
+       # @expense=Expense.find(params[:id])
     if(@expense.update(expense_params))
       flash[:notice]="Expense Updated successfully"
     redirect_to @expense
@@ -64,7 +64,7 @@ end
 
 
       def destroy
-         @expense=Expense.find(params[:id])
+         # @expense=Expense.find(params[:id])
         @expense.destroy
         flash[:notice]=" Expense Deleted successfully"
         redirect_to expenses_path
@@ -77,9 +77,9 @@ end
         params.require(:expense).permit(:name , :category_id, :amount, :date_time, :start_time, :user_id)
     end
       
-        # def set_expense
-        #   @expense = current_user.expenses.find(params[:id])
-        # end
+        def set_expense
+          @expense = current_user.expenses.find(params[:id])
+        end
       
       
 
