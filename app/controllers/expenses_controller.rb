@@ -2,17 +2,28 @@ class ExpensesController < ApplicationController
   require 'pry'
    before_action :authenticate_user!
   # before_action :authenticate_user!, only: [:create, :update, :destroy]
-   before_action :set_expense, only: [:show, :edit, :update, :destroy]
-    def index
-      # if current_user
-        #  @expense = Expense.all
-        
-         @expenses = current_user.expenses
-        #  else
-          
-        #   redirect_to new_user_session_path
-        # end
+  #before_action :set_expense, only: [:show, :edit, :update, :destroy]
+  def index
+    @expenses = Expense.all
+
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="expenses.xlsx"'
+      }
     end
+
+end
+
+
+
+  # def index
+    #
+    #  @expense = Expense.all
+    #
+    #      # @expenses = current_user.expenses
+    #
+  # end
 
     def new
      @expense = Expense.new
@@ -20,7 +31,7 @@ class ExpensesController < ApplicationController
 
 
     def create
-        #  @expense = Expense.new(expense_params)
+          @expense = Expense.new(expense_params)
          @expense = current_user.expenses.new(expense_params)
         if(@expense.save)
           flash[:notice]="Expense created successfully" 
@@ -31,17 +42,17 @@ class ExpensesController < ApplicationController
         end
 
     def show
-          # @expense = Expense.find(params[:id])
+           @expense = Expense.find(params[:id])
 
     end
 
     def edit
-          # @expense = Expense.find(params[:id])
+           @expense = Expense.find(params[:id])
 
    end
 
    def update
-      # @expense=Expense.find(params[:id])
+       @expense=Expense.find(params[:id])
     if(@expense.update(expense_params))
       flash[:notice]="Expense Updated successfully"
     redirect_to @expense
@@ -52,7 +63,7 @@ class ExpensesController < ApplicationController
 
 
       def destroy
-        # @expense=Expense.find(params[:id])
+         @expense=Expense.find(params[:id])
         @expense.destroy
         flash[:notice]=" Expense Deleted successfully"
         redirect_to expenses_path
@@ -65,9 +76,9 @@ class ExpensesController < ApplicationController
         params.require(:expense).permit(:name , :category_id, :amount, :date_time, :start_time, :user_id)
     end
       
-        def set_expense
-          @expense = current_user.expenses.find(params[:id])
-        end
+        # def set_expense
+        #   @expense = current_user.expenses.find(params[:id])
+        # end
       
       
 

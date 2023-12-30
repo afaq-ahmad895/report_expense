@@ -6,6 +6,8 @@ Rails.application.routes.draw do
  root 'expenses#index'
  resources :expenses
 
+
+
 get "categories/index"
 resources :categories
 
