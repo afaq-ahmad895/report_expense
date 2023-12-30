@@ -11,6 +11,7 @@ class ExpensesController < ApplicationController
       format.xlsx {
         response.headers['Content-Disposition'] = 'attachment; filename="expenses.xlsx"'
       }
+      
     end
 
 end
