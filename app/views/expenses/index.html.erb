@@ -16,11 +16,9 @@
   <p>Time:<%=expense.start_time%></p>
   <%=link_to "Read more", expense_path(expense), :class => 'btn btn-primary'%>
   <br><br>
-
 <% end %>
-
-
 
 <%= link_to 'Download as Excel', expenses_path(format: :xlsx) , :class => 'btn btn-info'%>
 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete , :class => 'btn btn-danger'%>
+
 
