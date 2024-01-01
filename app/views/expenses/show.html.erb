@@ -1,7 +1,7 @@
 <% if !flash[:notice].blank? %>
-<div class="alert alert-primary" role="alert">
-<%= flash[:notice] %>
-</div>
+  <div class="alert alert-primary" role="alert">
+    <%= flash[:notice] %>
+  </div>
 <% end %>
 
 <h2>Type:<%=@expense.name%></h2>

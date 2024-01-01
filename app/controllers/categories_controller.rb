@@ -1,54 +1,56 @@
 class CategoriesController < ApplicationController
-    def index
-        @category = Category.all
+
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  def index
+    @category = Category.all
+  end
+
+  def new
+    @category = Category.new
+  end
+
+  def create
+    @category = Category.new(post_params)
+    if(@category.save)
+      flash[:notice]="Category created successfully"
+      redirect_to @category
+    else
+      render 'new'
     end
+  end
 
-    def new
-     @category = Category.new
-    end
+  def show
+  end
 
+  def edit
+  end
 
-    def create
-        @category = Category.new(post_params)
-        
-        if(@category.save)
-          flash[:notice]="Category created successfully" 
-         redirect_to @category
-        else
-         render 'new'
-         end
-        end
-
-    def show
-         @category = Category.find(params[:id])
-
-    end
-
-    def edit
-        @category = Category.find(params[:id])
-
-   end
-
-   def update
-    @category= Category.find(params[:id])
+  def update
     if(@category.update(post_params))
       flash[:notice]="Category Updated successfully"
-    redirect_to @category
+      redirect_to @category
     else
-    render 'edit'
+      render 'edit'
     end
-      end
+  end
 
 
-      def destroy
-        @category=Category.find(params[:id])
-        @category.destroy
-        flash[:notice]=" Category Deleted successfully"
-        redirect_to categories_path
-          end
+  def destroy
+    @category.destroy
+    flash[:notice]=" Category Deleted successfully"
+    redirect_to categories_path
+  end
 
 
-    private def post_params
-        params.require(:category).permit(:name)
-          end
+  private def post_params
+    params.require(:category).permit(:name)
+  end
+
+  def set_category
+    @category=Category.find(params[:id])
+  end
+
 end
+
+
+
