@@ -8,6 +8,9 @@ gem 'rubyzip', '>= 1.2.1'
 gem 'axlsx'
 gem 'axlsx_rails'
 
+gem 'roo'
+gem 'rubyXL'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.8', '>= 5.2.8.1'
 # Use sqlite3 as the database for Active Record

@@ -4,7 +4,9 @@ Rails.application.routes.draw do
    
 
  root 'expenses#index'
- resources :expenses
+ resources :expenses  do
+   post :import_data, on: :collection
+ end
 
 
 
