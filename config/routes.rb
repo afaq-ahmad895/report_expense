@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'expenses#index'
   resources :expenses  do
     post :import_data, on: :collection
+    collection {post :import}
   end
 
   get "categories/index"

@@ -14,5 +14,17 @@ class Expense < ApplicationRecord
             end
         end
     end
+
+
+    def self.import(file)
+
+        CSV.foreach(file.path, headers: true) do |row|
+
+            Expense.create! row.to_hash
+
+        end
+    end
+
+
 end
 

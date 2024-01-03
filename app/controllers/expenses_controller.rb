@@ -41,11 +41,17 @@ class ExpensesController < ApplicationController
       format.html
       format.xlsx {
         response.headers['Content-Disposition'] = 'attachment; filename="expenses.xlsx"'
-
       }
       format.csv { send_data Expense.to_csv, filename: "expenses.cvs-#{Date.today}.csv"}
     end
   end
+
+  def import
+    Expense.import(params[:file])
+
+    redirect_to root_path, notice: "Data imported as CSV"
+  end
+
 
   def new
     @expense = Expense.new
