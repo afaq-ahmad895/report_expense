@@ -47,11 +47,9 @@ class ExpensesController < ApplicationController
   end
 
   def import
-    Expense.import(params[:file])
-
+    Expense.import(params[:file], current_user)
     redirect_to root_path, notice: "Data imported as CSV"
   end
-
 
   def new
     @expense = Expense.new
@@ -101,6 +99,7 @@ class ExpensesController < ApplicationController
     @expense = current_user.expenses.find(params[:id])
   end
 end
+
 
 
 
