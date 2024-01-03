@@ -25,6 +25,9 @@
 <% end %>
 
 <%= link_to 'Download as Excel', expenses_path(format: :xlsx) , :class => 'btn btn-info'%>
+<br><br>
+<%= link_to "Download as CVS", expenses_path(format: 'csv') , :class => 'btn btn-info'%>
+<br><br>
 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete , :class => 'btn btn-danger'%>
 
 
