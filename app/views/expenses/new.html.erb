@@ -26,6 +26,7 @@
 
   <%= f.submit %>
 <% end %>
+<br>
 <%= form_tag(import_data_expenses_path, multipart: true) do %>
 
   <% if !flash[:notice].blank? %>

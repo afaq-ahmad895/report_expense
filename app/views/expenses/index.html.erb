@@ -7,6 +7,12 @@
   </div>
 <% end %>
 
+<% if !flash[:alert].blank? %>
+  <div class="alert alert-secondary" role="alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
 <h1>All Expense</h1>
 <% @expenses.each do |expense|%>
 
@@ -20,6 +26,7 @@
 
 <%= link_to 'Download as Excel', expenses_path(format: :xlsx) , :class => 'btn btn-info'%>
 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete , :class => 'btn btn-danger'%>
+
 
 
 

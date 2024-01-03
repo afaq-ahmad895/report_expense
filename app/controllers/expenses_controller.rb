@@ -4,25 +4,33 @@ class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
 
   def import_data
-
     if params[:xlsx_file].nil? || params[:xlsx_file].blank?
       flash[:notice] = "Please choose a file before importing data."
       redirect_to new_expense_path
       return
     end
+
     xlsx = Roo::Spreadsheet.open(params[:xlsx_file])
     xlsx.sheet(0).each_with_index(name: 'Name', amount: 'Amount',
                                   category: 'Category', start_time: 'Start_time') do |row, row_index|
+
       category = Category.find_or_create_by(name: row[:category])
+
       next if row_index == 0 || Expense.find_by(name: row[:name]).present?
 
-      Expense.create(
+      start_time = DateTime.parse(row[:start_time])
+
+      if Expense.create(
         name: row[:name],
         amount: row[:amount],
-        # category: row[:category],
         category_id: category.id,
-        start_time: row[:start_time],
-        )
+        start_time: start_time,
+        user_id: current_user.id
+      )
+        flash[:notice] = "Expense import successfully."
+      else
+        flash[:alert] = "Error cannot import something is wrong"
+      end
     end
     redirect_to root_path
   end
@@ -84,8 +92,12 @@ class ExpensesController < ApplicationController
   def set_expense
     @expense = current_user.expenses.find(params[:id])
   end
-
 end
+
+
+
+
+
 
 
 

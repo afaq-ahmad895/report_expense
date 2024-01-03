@@ -34,23 +34,23 @@ class CategoriesController < ApplicationController
     end
   end
 
-
   def destroy
     @category.destroy
     flash[:notice]=" Category Deleted successfully"
     redirect_to categories_path
   end
 
+  private
+  def post_params
 
-  private def post_params
     params.require(:category).permit(:name)
   end
 
   def set_category
     @category=Category.find(params[:id])
   end
-
 end
+
 
 
 
