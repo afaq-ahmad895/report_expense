@@ -26,4 +26,16 @@
 
   <%= f.submit %>
 <% end %>
+<br>
+<%= form_tag(import_data_expenses_path, multipart: true) do %>
+
+  <% if !flash[:notice].blank? %>
+    <div class="alert alert-secondary" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <%= file_field_tag :xlsx_file %>
+  <%= submit_tag 'Import Data' %>
+<% end %>
 
