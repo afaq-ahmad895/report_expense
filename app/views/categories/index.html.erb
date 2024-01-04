@@ -1,0 +1,18 @@
+<%= link_to "Add New Category",  new_category_path, :class => 'btn btn-primary'  %>
+<br>
+
+<% if !flash[:notice].blank? %>
+<div class="alert alert-secondary" role="alert">
+<%= flash[:notice] %>
+</div>
+<% end %>
+
+<h1>All Categories</h1>
+<% @category.each do |category|%>
+   
+<h3>Name:<%=category.name%></h3>
+
+<%=link_to "Read more", category_path(category), :class => 'btn btn-primary'%>
+<br><br>
+
+<% end %>

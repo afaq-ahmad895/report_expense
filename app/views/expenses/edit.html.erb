@@ -1,0 +1,28 @@
+<h1>Edit New Expense</h1>
+
+<%= form_for(:expense, url: expense_path(@expense) , local: true, method: :patch) do |f| %>
+
+  <% if @expense.errors.any? %>
+    <% @expense.errors.full_messages.each do |msg| %>
+<div class="alert alert-danger"> <%= msg %> </div>
+<% end %>
+  <% end %> 
+
+  <%= f.label :Name %>
+  <%= f.text_field :name %>
+<br><br>
+
+  <%= f.label :Category_Id %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, prompt: true %>
+<br><br>
+
+  <%= f.label :Amount %>
+  <%= f.text_field :amount %>
+<br><br>
+
+<%= f.label :Time %>
+  <%= f.text_field :start_time %>
+<br><br>
+
+  <%= f.submit %>
+<% end %>

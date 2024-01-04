@@ -1,0 +1,14 @@
+
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Items") do |sheet|
+
+    # Create the header row
+    sheet.add_row ["Name", "Category", "Amount", "Start_time"]
+
+    # Create entries for each item
+    @expenses.each do |item|
+      sheet.add_row [item.name, item.category.name, item.amount, item.start_time]
+    end
+
+  end
