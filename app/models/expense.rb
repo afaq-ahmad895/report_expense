@@ -14,5 +14,23 @@ class Expense < ApplicationRecord
             end
         end
     end
+
+
+    # def self.import(file)
+    #
+    #     CSV.foreach(file.path, headers: true) do |row|
+    #
+    #         Expense.create! row.to_hash
+    #
+    #     end
+    # end
+    #
+    def self.import(file,user)
+        CSV.foreach(file.path, headers: true) do |row|
+            category = Category.find_or_create_by(name: row['Category'])
+            Expense.create! row.to_hash.merge(category: category, user: user)
+        end
+    end
 end
+
 
