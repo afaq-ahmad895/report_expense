@@ -1,7 +1,7 @@
 <% if !flash[:notice].blank? %>
-<div class="alert alert-primary" role="alert">
-<%= flash[:notice] %>
-</div>
+  <div class="alert alert-primary" role="alert">
+    <%= flash[:notice] %>
+  </div>
 <% end %>
 
 <h2>Type:<%=@expense.name%></h2>
@@ -11,5 +11,5 @@
 
 <%= link_to "Edit", edit_expense_path(@expense), :class => 'btn btn-primary' %>
 <%= link_to "Delete", expense_path(@expense), method: :delete, data: {confirm:'Are you sure?'}, :class => 'btn btn-danger' %>
-
 <%= link_to "Back To Index", expenses_path , :class => 'btn btn-primary'%>
+
