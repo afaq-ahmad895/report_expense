@@ -2,7 +2,7 @@ class ExpensesController < ApplicationController
   require 'pry'
   before_action :authenticate_user!
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   def import_data
     if params[:xlsx_file].nil? || params[:xlsx_file].blank?
       flash[:notice] = "Please choose a file before importing data."
@@ -75,6 +75,7 @@ class ExpensesController < ApplicationController
   end
 
   def update
+    #authorize! :read, @expense
     # @expense=Expense.find(params[:id])
     if(@expense.update(expense_params))
       flash[:notice]="Expense Updated successfully"
@@ -99,6 +100,7 @@ class ExpensesController < ApplicationController
     @expense = current_user.expenses.find(params[:id])
   end
 end
+
 
 
 

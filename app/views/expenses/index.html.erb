@@ -14,14 +14,18 @@
 <% end %>
 
 <h1>All Expense</h1>
-<% @expenses.each do |expense|%>
+<% if can?(:read, @expense) %>
+  <% @expenses.each do |expense|%>
 
-  <h2>Name:<%=expense.name%></h2>
-  <p>Category:<%= expense.category.name %></p>
-  <p>Amount:<%=expense.amount%></p>
-  <p>Time:<%=expense.start_time%></p>
-  <%=link_to "Read more", expense_path(expense), :class => 'btn btn-primary'%>
-  <br><br>
+    <h2>Name:<%=expense.name%></h2>
+    <p>Category:<%= expense.category.name %></p>
+    <p>Amount:<%=expense.amount%></p>
+    <p>Time:<%=expense.start_time%></p>
+    <%=link_to "Read more", expense_path(expense), :class => 'btn btn-primary'%>
+    <br><br>
+  <% end %>
+<% else %>
+  <p>You don't have permission to view.</p>
 <% end %>
 
 <%= link_to 'Download as Excel', expenses_path(format: :xlsx) , :class => 'btn btn-info'%>
@@ -29,6 +33,7 @@
 <%= link_to "Download as CSV", expenses_path(format: 'csv') , :class => 'btn btn-info'%>
 <br><br>
 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete , :class => 'btn btn-danger'%>
+
 
 
 

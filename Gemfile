@@ -8,6 +8,7 @@ gem 'rubyzip', '>= 1.2.1'
 gem 'axlsx'
 gem 'axlsx_rails'
 
+gem 'cancancan'
 gem 'roo'
 gem 'rubyXL'
 
